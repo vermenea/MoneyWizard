@@ -1,29 +1,24 @@
-import { useState } from "react";
+import { BrowserRouter, createBrowserRouter, RouterProvider } from "react-router-dom";
 import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Wallet from "./components/Wallet";
 
-function App(): JSX.Element {
-  const [showWallet, setShowWallet] = useState<boolean>(false);
-  const [showHome, setShowHome] = useState<boolean>(false);
+const router = createBrowserRouter([
+  { path: "/", element: <Header /> },
+  { path: "/wallet", element: <Wallet /> },
+ 
+]);
 
-  const handleWalletClick = (): void => {
-    setShowWallet(!showWallet);
-    setShowHome(false);
-  };
+// const router = createBrowserRouter(routes, { basename: "/" });
 
-  const handleGoHome = (): void => {
-    setShowHome(!showHome);
-    setShowWallet(false);
-  };
-
+function App() {
   return (
     <>
       <div className="flex bg-slate-200">
-        <Nav onWalletClick={handleWalletClick} goHome={handleGoHome} />
-        {showHome && <Header />}
-        {showWallet && <Wallet />}
+        <Nav />
+        <RouterProvider router={router} />
       </div>
+      <BrowserRouter/>
     </>
   );
 }
