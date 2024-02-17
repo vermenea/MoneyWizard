@@ -24,7 +24,7 @@ const icons: Icon[] = [
 
 const Nav: React.FC<NavProps> = ({ onWalletClick, goHome }): JSX.Element => {
   return (
-    <nav className="flex flex-col items-center justify-center min-w-20 h-screen bg-purple-800 ">
+    <nav className="flex flex-col items-center justify-center min-w-16 h-screen bg-purple-800 ">
       <button onClick={goHome}>
         <img src={logo} width={45} className="my-10" alt="Logo" />
       </button>
@@ -32,7 +32,7 @@ const Nav: React.FC<NavProps> = ({ onWalletClick, goHome }): JSX.Element => {
         {icons.map((item, index) => (
           <li key={index}>
             <button onClick={() => onWalletClick()}>
-              <img src={item.icon} alt={item.alt} className="w-10 my-10" />
+              <img src={item.icon} alt={item.alt} className="w-8 my-10" />
             </button>
           </li>
         ))}
