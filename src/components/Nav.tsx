@@ -1,41 +1,46 @@
 import { Link } from "react-router-dom";
-import userIcon from "/public/icons/user.svg";
+import logo from "/public/icons/logo.png";
 import walletIcon from "/public/icons/wallet.svg";
 import chartIcon from "/public/icons/chart-pie.svg";
 import settingsIcon from "/public/icons/settings.svg";
-import logo from "/public/icons/logo.png";
 
-interface Icon {
-  icon: string;
-  alt: string;
-  linkTo: string;
-  id: number; 
-}
-
-const icons: Icon[] = [
-  { icon: userIcon, alt: "User", linkTo: "/nav/1", id: 1 },
-  { icon: walletIcon, alt: "Wallet", linkTo: "/nav/2", id: 2 },
-  { icon: chartIcon, alt: "Chart", linkTo: "/nav/3", id: 3 },
-  { icon: settingsIcon, alt: "Settings", linkTo: "/nav/4", id: 4 },
-];
-
-export default function Nav() {
-  // const params = useParams();
-
+const Nav = () => {
   return (
-    <nav className="flex flex-col items-center justify-center min-w-16 h-screen bg-purple-800">
-      <button>
-        <img src={logo} width={45} className="my-10" alt="Logo" />
-      </button>
-      <ul>
-        {icons.map((item) => (
-          <li key={item.id}>
-            <Link to={item.linkTo}>
-              <img src={item.icon} alt={item.alt} />
-            </Link>
-          </li>
-        ))}
+    <nav className="flex flex-col items-center justify-center min-w-16 h-screen bg-purple-800 p-1">
+      <ul className="flex flex-col justify-between items-center text-white m-2">
+        <li className="flex items-center my-5">
+          <Link to="/">
+            <img src={logo} width={45} className="mr-2" alt="Logo" />
+          </Link>
+        </li>
+        <li className="flex items-center my-5">
+          <Link to="/wallet">
+            <img
+              src={walletIcon}
+              className="mr-2"
+              alt="Wallet Icon"
+              width={30}
+            />
+          </Link>
+        </li>
+        <li className="flex items-center my-5">
+          <Link to="/stats">
+            <img src={chartIcon} className="mr-2" alt="Chart Icon" width={30} />
+          </Link>
+        </li>
+        <li className="flex items-center my-5">
+          <Link to="/settings">
+            <img
+              src={settingsIcon}
+              className="mr-2"
+              alt="Settings Icon"
+              width={30}
+            />
+          </Link>
+        </li>
       </ul>
     </nav>
   );
-}
+};
+
+export default Nav;

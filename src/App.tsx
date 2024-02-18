@@ -1,25 +1,23 @@
-import { BrowserRouter, createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
-import Header from "./components/Header";
 import Wallet from "./components/Wallet";
-
-const router = createBrowserRouter([
-  { path: "/", element: <Header /> },
-  { path: "/wallet", element: <Wallet /> },
- 
-]);
-
-// const router = createBrowserRouter(routes, { basename: "/" });
+import Header from "./components/Header";
+import Stats from "./components/Stats";
+import Settings from "./components/Settings";
 
 function App() {
   return (
-    <>
-      <div className="flex bg-slate-200">
+    <div className="flex bg-slate-200">
+      <Router>
         <Nav />
-        <RouterProvider router={router} />
-      </div>
-      <BrowserRouter/>
-    </>
+        <Routes>
+          <Route path="/" Component={Header} />
+          <Route path="/wallet" Component={Wallet} />
+          <Route path="/stats" Component={Stats} />
+          <Route path="/settings" Component={Settings} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
