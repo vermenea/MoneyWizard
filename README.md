@@ -1,4 +1,4 @@
-# ![MoneyWizard Logo](https://example.com/path/to/your/image.png)
+# ![MoneyWizard Logo]([https://example.com/path/to/your/image.png](https://github.com/vermenea/MoneyWizard/blob/master/public/icons/logo.png?raw=true))
 
 MoneyWizard is a budget management application designed to help users gain control over their finances. Whether you're looking to stick to a budget, save for a goal, or simply track your spending habits, MoneyWizard provides the tools you need to manage your money effectively.
 
