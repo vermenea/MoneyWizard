@@ -29,7 +29,7 @@ Hey! The app is still in progress, so I won't provide a link for a demo just yet
 
 1. Clone the repository:
    
-   ```bash
+```bash
 git clone https://github.com/vermenea/MoneyWizard.git
 
 2. Install dependencies:
