@@ -20,12 +20,28 @@ MoneyWizard is a budget management application designed to help users gain contr
   chart.js - for displaying stats
 </p>
 
-Hey! The app is still in progress, so I won't provide a link for a demo just yet. If you're interested in checking out my current work, feel free to clone this repository. However, please note that there might be some bugs due to the app being in development. 😊
 
 ## Setup
 
-1. Clone the repository:
+Hey! The app is still in progress, so I won't provide a link for a demo just yet. If you're interested in checking out my current work, feel free to clone this repository. However, please note that there might be some bugs due to the app being in development. 😊
 
-```bash
+
+
+1. Clone the repository:
+   
+   ```bash
 git clone https://github.com/vermenea/MoneyWizard.git
 
+2. Install dependencies:
+   
+cd money-wizard
+npm install
+
+4. Start development server:
+   
+npm run dev
+
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or pull requests.
