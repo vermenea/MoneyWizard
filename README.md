@@ -1,4 +1,4 @@
-# MoneyWizard <img src="https://github.com/vermenea/MoneyWizard/blob/master/public/icons/logo.png?raw=true" alt="MoneyWizard Logo" width="30px">
+# MoneyWizard <img src="https://github.com/vermenea/MoneyWizard/blob/master/public/icons/logo.png?raw=true" alt="MoneyWizard Logo" width="40px">
 
 MoneyWizard is a budget management application designed to help users gain control over their finances. Whether you're looking to stick to a budget, save for a goal, or simply track your spending habits, MoneyWizard provides the tools you need to manage your money effectively.
 
@@ -17,12 +17,15 @@ MoneyWizard is a budget management application designed to help users gain contr
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=react,ts,tailwind,firebase,redux" />
   </a>
+  chart.js - for displaying stats
 </p>
 
+Hey! The app is still in progress, so I won't provide a link for a demo just yet. If you're interested in checking out my current work, feel free to clone this repository. However, please note that there might be some bugs due to the app being in development. 😊
 
 ## Setup
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/vermenea/money-wizard.git
+git clone https://github.com/vermenea/MoneyWizard.git
+
