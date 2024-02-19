@@ -31,16 +31,17 @@ Hey! The app is still in progress, so I won't provide a link for a demo just yet
    
 ```bash
 git clone https://github.com/vermenea/MoneyWizard.git
+```
 
 2. Install dependencies:
-   
+```bash   
 cd money-wizard
 npm install
-
+```
 4. Start development server:
-   
+```bash     
 npm run dev
-
+```
 
 ## Contributing
 
