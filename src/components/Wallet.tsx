@@ -206,9 +206,12 @@ const AddIncomeModal: React.FC<AddIncomeModalProps> = ({
 
 const Wallet: React.FC = () => {
   const [incomes, setIncomes] = useState<Income[]>([]);
+  const [selectedIncome, setSelectedIncome] = useState<Income | null>(null);
+  const [selectedExpense, setSelectedExpense] = useState<Expense | null>(null);
   const [isAddIncomeModalOpen, setAddIncomeModalOpen] = useState(false);
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [isAddExpenseModalOpen, setAddExpenseModalOpen] = useState(false);
+  const [currency, setCurrency] = useState("PLN");
 
   const handleAddIncome = (income: Income) => {
     setIncomes([...incomes, income]);
@@ -228,6 +231,8 @@ const Wallet: React.FC = () => {
     0,
   );
 
+  const totalBalance = totalIncome - totalExpenses;
+
   return (
     <section className="grid grid-rows-6 grid-cols-11 w-screen max-h-screen min-w-fit">
       {/* Greeting  */}
@@ -239,13 +244,22 @@ const Wallet: React.FC = () => {
 
       {/* Dashboard  */}
       <div className=" row-start-2 row-end-2 col-start-2 col-end-5 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
-        <h2>Total income:{totalIncome}</h2>
+        <h2>Total income:</h2>
+        <p className="font-semibold text-gray-500 text-2xl">
+          {totalIncome} {currency}
+        </p>
       </div>
       <div className=" row-start-2 row-end-2 col-start-5 col-end-8 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
-        <h2>Total expenses:{totalExpenses}</h2>
+        <h2>Total expenses:</h2>
+        <p className="font-semibold text-gray-500 text-2xl">
+          {totalExpenses} {currency}
+        </p>
       </div>
       <div className=" row-start-2 row-end-2 col-start-8 col-end-11 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
         <h2>Total balance:</h2>
+        <p className="font-semibold text-gray-500 text-2xl">
+          {totalBalance} {currency}
+        </p>
       </div>
       <div className="row-start-3 row-end-4 col-start-2 col-end-4 bg-purple-100 p-3 m-4 border-2 border-purple-300 rounded-xl">
         <h2 className="text-purple-600">wallet:</h2>
@@ -255,47 +269,108 @@ const Wallet: React.FC = () => {
       </div>
 
       {/* Icons  */}
-      <div className="flex items-center justify-center row-start-3 row-end-4 col-start-6 col-end-7 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-6 col-end-7 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
         <img src="/public/icons/food.svg" />
+        <p className="m-0.5 font-semibold text-gray-500">55%</p>
       </div>
-      <div className="flex items-center justify-center row-start-3 row-end-4 col-start-7 col-end-8 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-7 col-end-8 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
         <img src="/public/icons/health.svg" />
+        <p className="m-0.5 font-semibold text-gray-500">13%</p>
       </div>
-      <div className="flex items-center justify-center row-start-3 row-end-4 col-start-8 col-end-9 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-8 col-end-9 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
         <img src="/public/icons/home.svg" />
+        <p className="m-0.5 font-semibold text-gray-500">5%</p>
       </div>
-      <div className="flex items-center justify-center row-start-3 row-end-4 col-start-9 col-end-10 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-9 col-end-10 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
         <img src="/public/icons/pets.svg" />
+        <p className="m-0.5 font-semibold text-gray-500">10%</p>
       </div>
-      <div className="flex items-center justify-center row-start-3 row-end-4 col-start-10 col-end-11 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-10 col-end-11 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
         <img src="/public/icons/others.svg" />
+        <p className="m-0.5 font-semibold text-gray-500">12%</p>
       </div>
 
       {/* Stats  */}
       <div className="row-start-4 row-end-6 col-start-2 col-end-6 bg-slate-50  p-5 m-4 border-2 border-slate-300 rounded-xl">
-        <button
-          className="before:ease relative p-1 m-2 text-white text-sm overflow-hidden border border-purple-400 bg-purple-400 transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700  hover:before:-translate-x-40 rounded-md"
-          onClick={() => setAddIncomeModalOpen(true)}
-        >
-          Add income
-        </button>
-        <h2>Incomes:</h2>
-        <p>{totalIncome}</p>
+        <div className="flex justify-between items-center">
+          <h2>Incomes:</h2>
+          <button
+            className="before:ease relative p-1 m-2 text-white text-sm overflow-hidden border border-purple-400 bg-purple-400 transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700  hover:before:-translate-x-40 rounded-md"
+            onClick={() => setAddIncomeModalOpen(true)}
+          >
+            Add income
+          </button>
+        </div>
+        <ul>
+          {incomes.map((income, index) => (
+            <li
+              key={index}
+              className="font-semibold text-gray-500"
+              onClick={() => setSelectedIncome(income)}
+            >
+              <div className="flex  text-sm">
+                <div className="flex items-center">
+                  <h3 className="m-1 text-purple-300">Amount:</h3>
+                  <p className="mx-2 my-1">
+                    {income.amount} {currency}
+                  </p>
+                </div>
+                <div className="flex items-center">
+                  <h3 className="m-1 text-purple-300">Category:</h3>
+                  <p className="mx-2 my-1">{income.category}</p>
+                </div>
+                <div className="flex items-center">
+                  <h3 className="m-1 text-purple-300">Date:</h3>
+                  <p className="mx-2 my-1">{income.date}</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
+
       <AddIncomeModal
         isOpen={isAddIncomeModalOpen}
         onClose={() => setAddIncomeModalOpen(false)}
         onAddIncome={handleAddIncome}
       />
       <div className="row-start-4 row-end-6 col-start-6 col-end-11 bg-slate-50  p-5 m-4 border-2 border-slate-300 rounded-xl">
-        <button
-          className="before:ease relative p-1 m-2 text-white text-sm overflow-hidden border border-purple-400 bg-purple-400 transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700  hover:before:-translate-x-40 rounded-md"
-          onClick={() => setAddExpenseModalOpen(true)}
-        >
-          Add expenses
-        </button>
-        <h2>Expenses:</h2>
-        <p>{totalExpenses}</p>
+        <div className="flex justify-between items-center">
+          <h2>Expenses:</h2>
+          <button
+            className="before:ease relative p-1 m-2 text-white text-sm overflow-hidden border border-purple-400 bg-purple-400 transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700  hover:before:-translate-x-40 rounded-md"
+            onClick={() => setAddExpenseModalOpen(true)}
+          >
+            Add expense
+          </button>
+        </div>
+
+        <ul>
+          {expenses.map((expense, index) => (
+            <li
+              key={index}
+              className="font-semibold text-gray-500"
+              onClick={() => setSelectedExpense(expense)}
+            >
+              <div className="flex text-sm">
+                <div className="flex items-center">
+                  <h3 className="m-1 text-purple-300">Amount:</h3>
+                  <p className="mx-2 my-1">
+                    {expense.amount} {currency}
+                  </p>
+                </div>
+                <div className="flex items-center">
+                  <h3 className="m-1 text-purple-300">Category:</h3>
+                  <p className="mx-2 my-1">{expense.category}</p>
+                </div>
+                <div className="flex items-center">
+                  <h3 className="m-1 text-purple-300">Date:</h3>
+                  <p className="mx-2 my-1">{expense.date}</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
       <AddExpenseModal
         isOpen={isAddExpenseModalOpen}
