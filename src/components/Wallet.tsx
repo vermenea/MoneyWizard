@@ -243,55 +243,55 @@ const Wallet: React.FC = () => {
       </h1>
 
       {/* Dashboard  */}
-      <div className=" row-start-2 row-end-2 col-start-2 col-end-5 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className=" row-start-2 row-end-2 col-start-2 col-end-5 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
         <h2>Total income:</h2>
         <p className="font-semibold text-gray-500 text-2xl">
           {totalIncome} {currency}
         </p>
       </div>
-      <div className=" row-start-2 row-end-2 col-start-5 col-end-8 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className=" row-start-2 row-end-2 col-start-5 col-end-8 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
         <h2>Total expenses:</h2>
         <p className="font-semibold text-gray-500 text-2xl">
           {totalExpenses} {currency}
         </p>
       </div>
-      <div className=" row-start-2 row-end-2 col-start-8 col-end-11 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className=" row-start-2 row-end-2 col-start-8 col-end-11 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
         <h2>Total balance:</h2>
         <p className="font-semibold text-gray-500 text-2xl">
           {totalBalance} {currency}
         </p>
       </div>
-      <div className="row-start-3 row-end-4 col-start-2 col-end-4 bg-purple-100 p-3 m-4 border-2 border-purple-300 rounded-xl">
+      <div className="row-start-3 row-end-4 col-start-2 col-end-4 bg-purple-100 p-3 m-4 border-2 border-purple-300 rounded-xl shadow-md">
         <h2 className="text-purple-600">wallet:</h2>
       </div>
-      <div className="row-start-3 row-end-4 col-start-4 col-end-6 bg-green-100 p-3 m-4 border-2 border-green-300 rounded-xl">
+      <div className="row-start-3 row-end-4 col-start-4 col-end-6 bg-green-100 p-3 m-4 border-2 border-green-300 rounded-xl shadow-md">
         <h2 className="text-green-600">savings:</h2>
       </div>
 
       {/* Icons  */}
-      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-6 col-end-7 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-6 col-end-7 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
         <img src="/public/icons/food.svg" />
         <p className="m-0.5 font-semibold text-gray-500">55%</p>
       </div>
-      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-7 col-end-8 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-7 col-end-8 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
         <img src="/public/icons/health.svg" />
         <p className="m-0.5 font-semibold text-gray-500">13%</p>
       </div>
-      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-8 col-end-9 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-8 col-end-9 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
         <img src="/public/icons/home.svg" />
         <p className="m-0.5 font-semibold text-gray-500">5%</p>
       </div>
-      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-9 col-end-10 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-9 col-end-10 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
         <img src="/public/icons/pets.svg" />
         <p className="m-0.5 font-semibold text-gray-500">10%</p>
       </div>
-      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-10 col-end-11 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-10 col-end-11 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
         <img src="/public/icons/others.svg" />
         <p className="m-0.5 font-semibold text-gray-500">12%</p>
       </div>
 
       {/* Stats  */}
-      <div className="row-start-4 row-end-6 col-start-2 col-end-6 bg-slate-50  p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className="row-start-4 row-end-6 col-start-2 col-end-6 bg-slate-50  p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
         <div className="flex justify-between items-center">
           <h2>Incomes:</h2>
           <button
@@ -334,7 +334,7 @@ const Wallet: React.FC = () => {
         onClose={() => setAddIncomeModalOpen(false)}
         onAddIncome={handleAddIncome}
       />
-      <div className="row-start-4 row-end-6 col-start-6 col-end-11 bg-slate-50  p-5 m-4 border-2 border-slate-300 rounded-xl">
+      <div className="row-start-4 row-end-6 col-start-6 col-end-11 bg-slate-50  p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
         <div className="flex justify-between items-center">
           <h2>Expenses:</h2>
           <button

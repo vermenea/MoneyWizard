@@ -1,58 +1,52 @@
 export default function Settings() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {/* Block 1: Budget */}
-      <div className="bg-white shadow-md rounded-md p-4">
-        <h2 className="text-lg font-semibold mb-2">Budget Settings</h2>
-        {/* Add your budget settings inputs here */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Monthly Budget
+    <section className="flex flex-col justify-center items-center w-screen">
+      <h1 className="text-3xl font-bold mb-8 text-purple-500">Settings</h1>
+      <div className="grid grid-cols-4 grid-rows-1 gap-4 bg-white w-6/12 p-6 rounded-lg shadow-md">
+        <div className="m-3 p-2 w-52">
+          <label htmlFor="theme" className="mb-2 font-medium block">
+            Theme
           </label>
-          <input
-            type="number"
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
-            // Add your onChange handler and value attribute
-          />
+          <select
+            id="theme"
+            className="w-full p-2 border border-gray-300 rounded-md"
+          >
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
         </div>
-        {/* Add more settings as needed */}
-      </div>
+        <div className="m-3 p-2 w-52">
+          <label htmlFor="currency" className="mb-2 font-medium block">
+            Currency
+          </label>
+          <select
+            id="currency"
+            className="w-full p-2 border border-gray-300 rounded-md"
+          >
+            <option value="PLN">PLN</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            {/* Add more currency options as needed */}
+          </select>
+        </div>
 
-      {/* Block 2: Categories */}
-      <div className="bg-white shadow-md rounded-md p-4">
-        <h2 className="text-lg font-semibold mb-2">Categories Settings</h2>
-        {/* Add your category settings inputs here */}
-        {/* For example: */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Add New Category
+        <div className="row-span-1 col-span-4">
+          <label htmlFor="categories" className="m-2 p-3 font-medium block">
+            Categories
           </label>
-          <input
-            type="text"
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
-            // Add your onChange handler and value attribute
-          />
+          <div className="p-2">
+            {[...Array(5)].map((_, index) => (
+              <input
+                key={index}
+                type="text"
+                placeholder={`Category ${index + 1}`}
+                className="m-3 p-2 border border-gray-300 rounded-md w-2/12"
+              />
+            ))}
+          </div>
         </div>
-        {/* Add more settings as needed */}
       </div>
-
-      {/* Block 3: Notification Settings */}
-      <div className="bg-white shadow-md rounded-md p-4">
-        <h2 className="text-lg font-semibold mb-2">Notification Settings</h2>
-        {/* Add your notification settings inputs here */}
-        {/* For example: */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Enable Notifications
-          </label>
-          <input
-            type="checkbox"
-            className="mt-1 block border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
-            // Add your onChange handler and checked attribute
-          />
-        </div>
-        {/* Add more settings as needed */}
-      </div>
-    </div>
+    </section>
   );
 }
