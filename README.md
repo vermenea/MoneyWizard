@@ -4,16 +4,15 @@ MoneyWizard is a budget management application designed to help users gain contr
 
 ## Features
 
-- **Add Income:** Users can add their income details, including amount, category, and date. 🔜
-- **Add Expense:** Users can add their expenses, specifying the amount, category, and date. 🔜
+- **Add Income:** Users can add their income details, including amount, category, and date. 
+- **Add Expense:** Users can add their expenses, specifying the amount, category, and date. 
 - **Login Panel:** Secure authentication system for users to log in to their accounts. 🔜
 - **Stats Panel:** View statistics for particular date/month. 🔜
-- **Settings:** Change your settings(theme, currency, date format, set categories). 🔜
+- **Settings:** Change your settings(theme, currency, username, set categories).
 - **Wallet Panel:** Interface to manage income, expenses, and view overall financial status.
 
 ## Preview
 
-![image](https://github.com/vermenea/MoneyWizard/assets/141574626/d85dd371-f605-4304-a196-28c914833a2e)
 ![image](https://github.com/vermenea/MoneyWizard/assets/141574626/37f06d65-e197-447b-bc5d-a29b1731f317)
   
 
