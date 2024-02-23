@@ -11,6 +11,12 @@ MoneyWizard is a budget management application designed to help users gain contr
 - **Settings:** Change your settings(theme, currency, date format, set categories). 🔜
 - **Wallet Panel:** Interface to manage income, expenses, and view overall financial status.
 
+## Preview
+
+![image](https://github.com/vermenea/MoneyWizard/assets/141574626/d85dd371-f605-4304-a196-28c914833a2e)
+![image](https://github.com/vermenea/MoneyWizard/assets/141574626/37f06d65-e197-447b-bc5d-a29b1731f317)
+  
+
 ## Technologies Used
 
 <p align="center">
