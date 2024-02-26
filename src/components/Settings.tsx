@@ -2,48 +2,84 @@ export default function Settings() {
   return (
     <section className="flex flex-col justify-center items-center w-screen">
       <h1 className="text-3xl font-bold mb-8 text-purple-500">Settings</h1>
-      <div className="grid grid-cols-4 grid-rows-1 gap-4 bg-white w-6/12 p-6 rounded-lg shadow-md">
-        <div className="m-3 p-2 w-52">
-          <label htmlFor="theme" className="mb-2 font-medium block">
-            Theme
-          </label>
-          <select
-            id="theme"
-            className="w-full p-2 border border-gray-300 rounded-md"
-          >
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-          </select>
-        </div>
-        <div className="m-3 p-2 w-52">
-          <label htmlFor="currency" className="mb-2 font-medium block">
-            Currency
-          </label>
-          <select
-            id="currency"
-            className="w-full p-2 border border-gray-300 rounded-md"
-          >
-            <option value="PLN">PLN</option>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            {/* Add more currency options as needed */}
-          </select>
+      <div className="flex bg-white rounded-xl p-8">
+        <div className="w-1/2 mr-12">
+          <h2 className="text-gray-500 font-semibold my-5">Account</h2>
+          <div className="bg-gray-100 rounded-lg p-4 text-sm">
+            <img alt="user avatar"></img>
+            <h3 className="font-semibold m">Natalia Zagórska</h3>
+            <p>
+              That's not you?
+              <span className="underline ml-1">Change user</span>
+            </p>
+          </div>
+          <h2 className="text-gray-500 font-semibold my-5">Username</h2>
+          <div className="bg-gray-100 rounded-lg p-4 text-sm">@vermenea</div>
+          <h2 className="text-gray-500 font-semibold my-5">Currency</h2>
+          <div className="flex ">
+            <button className="py-0.5 px-3 m-1 bg-purple-200 border-2 border-purple-500 rounded-2xl text-xs font-semibold">
+              PLN
+            </button>
+            <button className="py-0.5 px-3 m-1 bg-purple-200 border-2 border-purple-500 rounded-2xl text-xs font-semibold">
+              EUR
+            </button>
+            <button className="py-0.5 px-3 m-1 bg-purple-200 border-2 border-purple-500 rounded-2xl text-xs font-semibold">
+              GBP
+            </button>
+            <button className="py-0.5 px-3 m-1 bg-purple-200 border-2 border-purple-500 rounded-2xl text-xs font-semibold">
+              USD
+            </button>
+          </div>
         </div>
 
-        <div className="row-span-1 col-span-4">
-          <label htmlFor="categories" className="m-2 p-3 font-medium block">
-            Categories
-          </label>
-          <div className="p-2">
-            {[...Array(5)].map((_, index) => (
-              <input
-                key={index}
-                type="text"
-                placeholder={`Category ${index + 1}`}
-                className="m-3 p-2 border border-gray-300 rounded-md w-2/12"
-              />
-            ))}
+        <div className="w-1/2">
+          <h2 className="text-gray-500 font-semibold my-5">Preferences</h2>
+          <div className="flex flex-col">
+            <input type="checkbox" name="" id="" />
+            <label>Dark mode</label>
+            <input type="checkbox" name="" id="" />
+            <label>Show username instead of real name</label>
+          </div>
+
+          <h2 className="text-gray-500 font-semibold my-5">Categories</h2>
+          <div className="flex mx-1 my-10">
+            <input
+              type="text"
+              placeholder="set..."
+              className=" w-24 bg-gray-100 rounded-lg text-center"
+            />
+            <input
+              type="text"
+              placeholder="set..."
+              className="mx-1 w-24 bg-gray-100 rounded-lg text-center"
+            />
+            <input
+              type="text"
+              placeholder="set..."
+              className="mx-1 w-24 bg-gray-100 rounded-lg text-center"
+            />
+          </div>
+          <div className="flex mx-1 my-12">
+            <input
+              type="text"
+              placeholder="set..."
+              className=" w-24 bg-gray-100 rounded-lg text-center"
+            />
+            <input
+              type="text"
+              placeholder="set..."
+              className="mx-1 w-24 bg-gray-100 rounded-lg text-center"
+            />
+            <input
+              type="text"
+              placeholder="set..."
+              className="mx-1 w-24 bg-gray-100 rounded-lg text-center"
+            />
+          </div>
+          <div className="flex justify-end mt-8">
+            <button className="py-0.5 px-4 m-1 bg-purple-500 rounded-2xl text-sm text-center font-semibold text-white">
+              save
+            </button>
           </div>
         </div>
       </div>
