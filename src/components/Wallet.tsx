@@ -1,383 +1,149 @@
-import React, { useState } from "react";
-import Modal from "react-modal";
-
-Modal.setAppElement("#root");
-
-interface Income {
-  amount: number;
-  category: string;
-  date: string;
-}
-
-interface AddIncomeModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onAddIncome: (income: Income) => void;
-}
-
-interface Expense {
-  amount: number;
-  category: string;
-  date: string;
-}
-
-interface AddExpenseModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onAddExpense: (expense: Expense) => void;
-}
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
-
-const AddExpenseModal: React.FC<AddExpenseModalProps> = ({
-  isOpen,
-  onClose,
-  onAddExpense,
-}) => {
-  const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState("");
-  const [date, setDate] = useState("");
-
-  const handleAddExpense = () => {
-    if (!amount || !category || !date) {
-      alert("Please fill in all fields");
-      return;
-    }
-
-    const expense: Expense = {
-      amount: parseFloat(amount),
-      category,
-      date,
-    };
-
-    onAddExpense(expense);
-    onClose();
-  };
-
-  return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onClose}
-      style={customStyles}
-      contentLabel="Add Expense Modal"
-    >
-      <div
-        className="modal-close cursor-pointer z-50 absolute top-0 right-0 mt-2 mr-2"
-        onClick={onClose}
-      >
-        <img src="/public/icons/close.png" alt="Close" width={20} />
-      </div>
-      <div className="modal-content">
-        <div className="modal-header">
-          <h3 className="text-lg font-semibold mb-2">Add Expense</h3>
-        </div>
-        <div className="modal-body">
-          <input
-            type="number"
-            placeholder="Amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="input-field mb-4 p-2 border border-gray-300 rounded-md"
-          />
-          <input
-            type="text"
-            placeholder="Category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="input-field mb-4 p-2 border border-gray-300 rounded-md"
-          />
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className="input-field mb-4 p-2 border border-gray-300 rounded-md"
-          />
-        </div>
-        <div className="modal-footer">
-          <button
-            className="btn-primary bg-green-300 rounded-md px-1 py-0.5"
-            onClick={handleAddExpense}
-          >
-            Add
-          </button>
-          <button
-            className="btn-secondary bg-slate-300 ml-2 rounded-md px-1 py-0.5"
-            onClick={onClose}
-          >
-            Cancel
-          </button>
-        </div>
-      </div>
-    </Modal>
-  );
-};
-
-const AddIncomeModal: React.FC<AddIncomeModalProps> = ({
-  isOpen,
-  onClose,
-  onAddIncome,
-}) => {
-  const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState("");
-  const [date, setDate] = useState("");
-
-  const handleAddIncome = () => {
-    if (!amount || !category || !date) {
-      alert("Please fill in all fields");
-      return;
-    }
-
-    // Convert amount to number
-    const income: Income = {
-      amount: parseFloat(amount),
-      category,
-      date,
-    };
-
-    onAddIncome(income);
-    onClose();
-  };
-  return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onClose}
-      style={customStyles}
-      contentLabel="Add Income Modal"
-    >
-      <div
-        className="modal-close cursor-pointer z-50 absolute top-0 right-0 mt-2 mr-2"
-        onClick={onClose}
-      >
-        <img src="/public/icons/close.png" width={20} alt="Close" />
-      </div>
-      <div className="modal-content">
-        <div className="modal-header">
-          <h3 className="text-lg font-semibold mb-2">Add Income</h3>
-        </div>
-        <div className="modal-body">
-          <input
-            type="number"
-            placeholder="Amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="input-field mb-4 p-2 border border-gray-300 rounded-md"
-          />
-          <input
-            type="text"
-            placeholder="Category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="input-field mb-4 p-2 border border-gray-300 rounded-md"
-          />
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className="input-field mb-4 p-2 border border-gray-300 rounded-md"
-          />
-        </div>
-        <div className="modal-footer">
-          <button
-            className="btn-primary bg-green-300 rounded-md px-1 py-0.5"
-            onClick={handleAddIncome}
-          >
-            Add
-          </button>
-          <button
-            className="btn-secondary bg-slate-300 ml-2 rounded-md px-1 py-0.5"
-            onClick={onClose}
-          >
-            Cancel
-          </button>
-        </div>
-      </div>
-    </Modal>
-  );
-};
+import { useState } from "react";
+import { AddExpenseModal } from "./ui/AddExpenseModal";
+import { AddIncomeModal } from "./ui/AddIncomeModal";
+import { Income, Expense } from "../types/types";
 
 const Wallet: React.FC = () => {
   const [incomes, setIncomes] = useState<Income[]>([]);
-  const [selectedIncome, setSelectedIncome] = useState<Income | null>(null);
-  const [selectedExpense, setSelectedExpense] = useState<Expense | null>(null);
-  const [isAddIncomeModalOpen, setAddIncomeModalOpen] = useState(false);
   const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [isAddIncomeModalOpen, setAddIncomeModalOpen] = useState(false);
   const [isAddExpenseModalOpen, setAddExpenseModalOpen] = useState(false);
-  const [currency, setCurrency] = useState("PLN");
+  const [currency] = useState("PLN");
 
-  const handleAddIncome = (income: Income) => {
-    setIncomes([...incomes, income]);
-  };
-
-  const totalIncome = incomes.reduce(
-    (total, income) => total + income.amount,
-    0,
-  );
-
-  const handleAddExpense = (expense: Expense) => {
-    setExpenses([...expenses, expense]);
-  };
-
-  const totalExpenses = expenses.reduce(
-    (total, expense) => total + expense.amount,
-    0,
-  );
-
+  const totalIncome = incomes.reduce((t, i) => t + i.amount, 0);
+  const totalExpenses = expenses.reduce((t, e) => t + e.amount, 0);
   const totalBalance = totalIncome - totalExpenses;
 
   return (
-    <section className="grid grid-rows-6 grid-cols-11 w-screen max-h-screen min-w-fit">
-      {/* Greeting  */}
-      <h1 className="flex justify-center items-center row-start-1 row-end-2 col-start-2 col-end-4 text-center text-2xl font-semibold">
-        <h2>
-          Hello, <strong className="text-purple-500 ml-1"> user!</strong>
+    <section className="w-full min-h-screen bg-gray-50 px-4 py-4 sm:px-40">
+      {/* Greeting */}
+      <header className="text-center mt-2 mb-4">
+        <h2 className="text-xl sm:text-2xl font-semibold">
+          Hello,<span className="text-purple-500 ml-1">user!</span>
         </h2>
-      </h1>
-
-      {/* Dashboard  */}
-      <div className=" row-start-2 row-end-2 col-start-2 col-end-5 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
-        <h2>Total income:</h2>
-        <p className="font-semibold text-gray-500 text-2xl">
-          {totalIncome} {currency}
-        </p>
-      </div>
-      <div className=" row-start-2 row-end-2 col-start-5 col-end-8 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
-        <h2>Total expenses:</h2>
-        <p className="font-semibold text-gray-500 text-2xl">
-          {totalExpenses} {currency}
-        </p>
-      </div>
-      <div className=" row-start-2 row-end-2 col-start-8 col-end-11 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
-        <h2>Total balance:</h2>
-        <p className="font-semibold text-gray-500 text-2xl">
-          {totalBalance} {currency}
-        </p>
-      </div>
-      <div className="row-start-3 row-end-4 col-start-2 col-end-4 bg-purple-100 p-3 m-4 border-2 border-purple-300 rounded-xl shadow-md">
-        <h2 className="text-purple-600">wallet:</h2>
-      </div>
-      <div className="row-start-3 row-end-4 col-start-4 col-end-6 bg-green-100 p-3 m-4 border-2 border-green-300 rounded-xl shadow-md">
-        <h2 className="text-green-600">savings:</h2>
-      </div>
-
-      {/* Icons  */}
-      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-6 col-end-7 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
-        <img src="/public/icons/food.svg" />
-        <p className="m-0.5 font-semibold text-gray-500">55%</p>
-      </div>
-      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-7 col-end-8 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
-        <img src="/public/icons/health.svg" />
-        <p className="m-0.5 font-semibold text-gray-500">13%</p>
-      </div>
-      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-8 col-end-9 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
-        <img src="/public/icons/home.svg" />
-        <p className="m-0.5 font-semibold text-gray-500">5%</p>
-      </div>
-      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-9 col-end-10 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
-        <img src="/public/icons/pets.svg" />
-        <p className="m-0.5 font-semibold text-gray-500">10%</p>
-      </div>
-      <div className="flex items-center justify-center flex-col row-start-3 row-end-4 col-start-10 col-end-11 bg-slate-50 p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
-        <img src="/public/icons/others.svg" />
-        <p className="m-0.5 font-semibold text-gray-500">12%</p>
-      </div>
-
-      {/* Stats  */}
-      <div className="row-start-4 row-end-6 col-start-2 col-end-6 bg-slate-50  p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
-        <div className="flex justify-between items-center">
-          <h2>Incomes:</h2>
-          <button
-            className="before:ease relative p-1 m-2 text-white text-sm overflow-hidden border border-purple-400 bg-purple-400 transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700  hover:before:-translate-x-40 rounded-md"
-            onClick={() => setAddIncomeModalOpen(true)}
-          >
-            Add income
-          </button>
+      </header>
+      {/* Dashboard summary */}
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-4">
+        <div className="flex-1 bg-slate-50 p-4 border border-slate-200 rounded-xl shadow">
+          <h2 className="text-base">Total income:</h2>
+          <p className="font-bold text-gray-500 text-xl">
+            {totalIncome} {currency}
+          </p>
         </div>
-        <ul>
-          {incomes.map((income, index) => (
-            <li
-              key={index}
-              className="font-semibold text-gray-500"
-              onClick={() => setSelectedIncome(income)}
-            >
-              <div className="flex  text-sm">
-                <div className="flex items-center">
-                  <h3 className="m-1 text-purple-300">Amount:</h3>
-                  <p className="mx-2 my-1">
-                    {income.amount} {currency}
-                  </p>
-                </div>
-                <div className="flex items-center">
-                  <h3 className="m-1 text-purple-300">Category:</h3>
-                  <p className="mx-2 my-1">{income.category}</p>
-                </div>
-                <div className="flex items-center">
-                  <h3 className="m-1 text-purple-300">Date:</h3>
-                  <p className="mx-2 my-1">{income.date}</p>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <div className="flex-1 bg-slate-50 p-4 border border-slate-200 rounded-xl shadow">
+          <h2 className="text-base">Total expenses:</h2>
+          <p className="font-bold text-gray-500 text-xl">
+            {totalExpenses} {currency}
+          </p>
+        </div>
+        <div className="flex-1 bg-slate-50 p-4 border border-slate-200 rounded-xl shadow">
+          <h2 className="text-base">Total balance:</h2>
+          <p className="font-bold text-gray-500 text-xl">
+            {totalBalance} {currency}
+          </p>
+        </div>
       </div>
-
+      {/* Category icons */}
+      <div className="flex flex-wrap gap-2 mb-4 justify-center">
+        <div className="flex flex-col items-center bg-purple-100 border border-purple-200 rounded-xl p-2 w-16">
+          <img src="/public/icons/food.svg" className="w-7 h-7" />
+          <span className="text-xs font-medium text-gray-600">55%</span>
+        </div>
+        <div className="flex flex-col items-center bg-green-100 border border-green-200 rounded-xl p-2 w-16">
+          <img src="/public/icons/health.svg" className="w-7 h-7" />
+          <span className="text-xs font-medium text-gray-600">13%</span>
+        </div>
+        <div className="flex flex-col items-center bg-blue-100 border border-blue-200 rounded-xl p-2 w-16">
+          <img src="/public/icons/home.svg" className="w-7 h-7" />
+          <span className="text-xs font-medium text-gray-600">5%</span>
+        </div>
+        <div className="flex flex-col items-center bg-yellow-100 border border-yellow-200 rounded-xl p-2 w-16">
+          <img src="/public/icons/pets.svg" className="w-7 h-7" />
+          <span className="text-xs font-medium text-gray-600">10%</span>
+        </div>
+        <div className="flex flex-col items-center bg-slate-100 border border-slate-200 rounded-xl p-2 w-16">
+          <img src="/public/icons/others.svg" className="w-7 h-7" />
+          <span className="text-xs font-medium text-gray-600">12%</span>
+        </div>
+      </div>
+      {/* Stats - incomes & expenses */}
+      <div className="flex flex-col gap-4">
+        <div className="bg-white p-4 border border-slate-200 rounded-xl shadow">
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="text-base font-semibold">Incomes</h2>
+            <button
+              className="bg-purple-400 hover:bg-purple-500 text-white px-3 py-1 rounded text-sm"
+              onClick={() => setAddIncomeModalOpen(true)}
+            >
+              Add income
+            </button>
+          </div>
+          <ul className="space-y-2">
+            {incomes.length === 0 && (
+              <li className="text-gray-400 text-sm">No incomes yet.</li>
+            )}
+            {incomes.map((income, i) => (
+              <li
+                key={i}
+                className="flex flex-col sm:flex-row sm:items-center text-sm font-semibold text-gray-600 bg-slate-100 p-2 rounded"
+              >
+                <span className="mr-2">
+                  💸{" "}
+                  <span className="font-medium">
+                    {income.amount} {currency}
+                  </span>
+                </span>
+                <span className="mr-2">| {income.category}</span>
+                <span>| {income.date}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="bg-white p-4 border border-slate-200 rounded-xl shadow">
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="text-base font-semibold">Expenses</h2>
+            <button
+              className="bg-purple-400 hover:bg-purple-500 text-white px-3 py-1 rounded text-sm"
+              onClick={() => setAddExpenseModalOpen(true)}
+            >
+              Add expense
+            </button>
+          </div>
+          <ul className="space-y-2">
+            {expenses.length === 0 && (
+              <li className="text-gray-400 text-sm">No expenses yet.</li>
+            )}
+            {expenses.map((expense, i) => (
+              <li
+                key={i}
+                className="flex flex-col sm:flex-row sm:items-center text-sm font-semibold text-gray-600 bg-slate-100 p-2 rounded"
+              >
+                <span className="mr-2">
+                  🧾{" "}
+                  <span className="font-medium">
+                    {expense.amount} {currency}
+                  </span>
+                </span>
+                <span className="mr-2">| {expense.category}</span>
+                <span>| {expense.date}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      {/* Modals */}
       <AddIncomeModal
         isOpen={isAddIncomeModalOpen}
         onClose={() => setAddIncomeModalOpen(false)}
-        onAddIncome={handleAddIncome}
+        onAddIncome={(income: Income) => setIncomes((prev) => [...prev, income])}
       />
-      <div className="row-start-4 row-end-6 col-start-6 col-end-11 bg-slate-50  p-5 m-4 border-2 border-slate-300 rounded-xl shadow-md">
-        <div className="flex justify-between items-center">
-          <h2>Expenses:</h2>
-          <button
-            className="before:ease relative p-1 m-2 text-white text-sm overflow-hidden border border-purple-400 bg-purple-400 transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700  hover:before:-translate-x-40 rounded-md"
-            onClick={() => setAddExpenseModalOpen(true)}
-          >
-            Add expense
-          </button>
-        </div>
-
-        <ul>
-          {expenses.map((expense, index) => (
-            <li
-              key={index}
-              className="font-semibold text-gray-500"
-              onClick={() => setSelectedExpense(expense)}
-            >
-              <div className="flex text-sm">
-                <div className="flex items-center">
-                  <h3 className="m-1 text-purple-300">Amount:</h3>
-                  <p className="mx-2 my-1">
-                    {expense.amount} {currency}
-                  </p>
-                </div>
-                <div className="flex items-center">
-                  <h3 className="m-1 text-purple-300">Category:</h3>
-                  <p className="mx-2 my-1">{expense.category}</p>
-                </div>
-                <div className="flex items-center">
-                  <h3 className="m-1 text-purple-300">Date:</h3>
-                  <p className="mx-2 my-1">{expense.date}</p>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
       <AddExpenseModal
         isOpen={isAddExpenseModalOpen}
         onClose={() => setAddExpenseModalOpen(false)}
-        onAddExpense={handleAddExpense}
+        onAddExpense={(expense: Expense) => setExpenses((prev) => [...prev, expense])}
       />
     </section>
   );
 };
+
 export default Wallet;

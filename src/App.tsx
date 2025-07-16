@@ -7,7 +7,7 @@ import Settings from "./components/Settings";
 
 function App() {
   return (
-    <main className="flex bg-slate-200">
+    <main className="flex">
       <Router>
         <Nav />
         <Routes>

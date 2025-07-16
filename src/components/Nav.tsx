@@ -6,7 +6,7 @@ import settingsIcon from "/public/icons/settings.svg";
 
 const Nav = () => {
   return (
-    <nav className="flex flex-col items-center justify-center min-w-16 h-screen bg-purple-800 p-1 max-w-16">
+    <nav className="flex flex-col items-center justify-center min-w-16 min-h-screen bg-purple-800 p-1 max-w-16">
       <ul className="flex flex-col justify-between items-center text-white m-2">
         <li className="flex items-center my-5">
           <Link to="/">
