@@ -2,8 +2,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
 import Wallet from "./components/Wallet";
 import Header from "./components/Header";
-// import Stats from "./components/Stats";
 import Settings from "./components/Settings";
+import RegisterPanel from "./components/RegisterPanel";
+import LoginPanel from "./components/LoginPanel";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Routes>
           <Route path="/" Component={Header} />
           <Route path="/wallet" Component={Wallet} />
-          {/* <Route path="/stats" Component={Stats} /> */}
+          <Route path="/register" Component={RegisterPanel} />
+          <Route path="/login" Component={LoginPanel} />
           <Route path="/settings" Component={Settings} />
         </Routes>
       </Router>
