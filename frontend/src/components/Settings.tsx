@@ -6,7 +6,6 @@ export default function Settings() {
         flex flex-col w-full max-w-md bg-white rounded-xl p-4 md:p-8 shadow
         md:max-w-4xl md:flex-row
       ">
-        {/* LEWA */}
         <div className="w-full md:w-1/2 md:pr-8 mb-8 md:mb-0">
           <h2 className="text-gray-500 font-semibold my-4">Account</h2>
           <div className="bg-gray-100 rounded-lg p-4 text-sm flex items-center gap-3">
@@ -33,8 +32,6 @@ export default function Settings() {
             ))}
           </div>
         </div>
-
-        {/* PRAWA */}
         <div className="w-full md:w-1/2">
           <h2 className="text-gray-500 font-semibold my-4">Preferences</h2>
           <div className="flex flex-col gap-3 bg-gray-100 rounded-lg p-4 mb-4">
